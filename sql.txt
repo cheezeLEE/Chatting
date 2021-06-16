@@ -1,0 +1,54 @@
+-- 데이터베이스 생성 (System에서 작업)
+CREATE USER chatting IDENTIFIED BY chatting DEFAULT TABLESPACE 
+users TEMPORARY TABLESPACE temp PROFILE DEFAULT;
+GRANT CONNECT, RESOURCE TO chatting;
+
+-- 회원
+CREATE TABLE member(
+    userId VARCHAR2(20) NOT NULL,
+    userName VARCHAR2(20) NOT NULL,
+    userPw VARCHAR2(500) NOT NULL,
+    userGender CHAR(1) NOT NULL,
+    userEmail VARCHAR2(50) NOT NULL,
+    userRegDate DATE DEFAULT SYSDATE NOT NULL,
+    userDeletedYn CHAR(1) DEFAULT 'n' NOT NULL,
+    CONSTRAINT PK_MEMBER PRIMARY KEY(userId)
+);
+
+-- 채팅방 정보
+CREATE TABLE room(
+    roomNo NUMBER NOT NULL,
+    roomName VARCHAR2(100) NOT NULL,
+    personnel NUMBER NOT NULL,
+    roomPw VARCHAR2(100) NULL,
+    roomRegDate DATE DEFAULT SYSDATE NOT NULL,
+    roomRegId VARCHAR2(20) NOT NULL,
+    roomUptDate DATE NULL,
+    leaderId VARCHAR2(20) NOT NULL,
+    roomDeletedYn CHAR(1) DEFAULT 'n' NOT NULL,
+    CONSTRAINT PK_ROOM PRIMARY KEY(roomNo)
+);
+
+-- 회원과 채팅방의 매핑정보
+CREATE TABLE mapping(
+    userId VARCHAR2(20) NOT NULL,
+    roomNo NUMBER NOT NULL,
+    inTime DATE DEFAULT SYSDATE NOT NULL,
+    outTime DATE NULL,
+    CONSTRAINT PK_MAPPING PRIMARY KEY(userId, roomNo),
+    CONSTRAINT FK_MEMBER_MAPPING FOREIGN KEY(userId) REFERENCES userId,
+    CONSTRAINT FK_ROOM_MAPPING FOREIGN KEY(roomNo) REFERENCES roomNo
+);
+
+-- 채팅방에서 업로드된 파일정보
+CREATE TABLE roomFile(
+    fileNo NUMBER NOT NULL,
+    roomNo NUMBER NOT NULL,
+    fileName VARCHAR2(100) NOT NULL,
+    uploadPath VARCHAR2(500) NOT NULL,
+    fileType VARCHAR2(20) NOT NULL,
+    uploadDate DATE DEFAULT SYSDATE NOT NULL,
+    uploader VARCHAR2(20) NOT NULL,
+    CONSTRAINT PK_ROOMFILE PRIMARY KEY(fileNo),
+    CONSTRAINT FK_ROOM_ROOMFILE FOREIGN KEY(roomNo) REFERENCES roomNo
+);
