@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+   
+   <!-- 로그파일이 저장되는 경로 -->
+   <property name="LOG_PATH" value="C:/log/chatting" />
+   <property name="FILE_NAME1" value="DataLOG" />
+   <property name="FILE_NAME2" value="SqlLOG" />
+
+
+   <!-- 콘솔에서 로그를 작성할 때 -->
+   <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+      <encoder>
+         <Pattern>%d %5p [%c] %m%n</Pattern>
+      </encoder>
+   </appender>
+
+
+   <!-- 파일로 로그를 작성할 때 -->
+   <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+         <fileNamePattern>${LOG_PATH}/${FILE_NAME1}_%d{yyyyMMdd}.log</fileNamePattern>
+      </rollingPolicy>
+      <encoder>
+         <pattern>%d{yyyy-MM-dd HH:mm:ss} : %m%n</pattern>
+      </encoder>
+   </appender>
+
+
+   <!-- 파일로 로그를 작성할 때 -->
+   <appender name="SQL_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+      <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+         <fileNamePattern>${LOG_PATH}/${FILE_NAME2}_%d{yyyyMMdd}.log</fileNamePattern>
+      </rollingPolicy>
+      <encoder>
+         <pattern>%d{yyyy-MM-dd HH:mm:ss} : %m%n</pattern>
+      </encoder>
+   </appender>
+
+
+   <!-- Logger -->
+    <logger name="jdbc" level="OFF"/>
+    <logger name="jdbc.sqlonly" level="DEBUG">
+      <appender-ref ref="SQL_FILE" />
+    </logger>
+    <logger name="jdbc.sqltiming" level="info"/>
+    <logger name="jdbc.audit" level="OFF"/>
+    <logger name="jdbc.resultset" level="OFF"/>
+    <logger name="jdbc.resultsettable" level="DEBUG"/>
+    <logger name="jdbc.connection" level="OFF"/>
+
+
+   <!-- 프로그램에서 적용될 로그 레벨 -->
+     <root level="info">
+    <appender-ref ref="console" />
+    <appender-ref ref="FILE" />
+     </root>
+     
+<!--       <root level="error">
+    <appender-ref ref="FILE" />
+     </root> -->
+
+</configuration>
