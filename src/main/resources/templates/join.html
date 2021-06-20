@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>회원가입</title>
+
+    <style>
+
+        body{
+            width: 600px;
+            height: 600px;       
+        }
+
+        h3{
+            margin: 10px;
+        }
+
+        .row{
+            margin-top: 10px;
+        }
+
+        .row input[type=button]{
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <h3>회원가입</h3>
+        </div>
+        <form th:action="@{/user}" method="post"> 
+            <div class="row">
+                <label for="userId" class="col-3">아이디</label>
+                <input type="text" name ="userId" id ="userId" placeholder="아이디를 입력하세요." class="col-7">
+            </div>
+
+            <div class="row">
+                <label for="userPw" class="col-3">비밀번호</label>
+                <input type="password" name ="userPw" id ="userPw" placeholder="비밀번호를 입력하세요." class="col-7">
+            </div>
+                
+<!--             <div class="row">
+                <label for="checkPw" class="col-3">비밀번호 확인</label>
+                <input type="password" name ="checkPw" id ="userPw" placeholder="비밀번호 확인." class="col-7">
+            </div> -->
+
+            <div class="row">
+                <label for="user_name" class="col-3">이름</label>
+                <input type="text" name ="user_name" class="col-7" id ="userName" placeholder="이름을 입력하세요.">
+            </div>
+
+            <div class="row">
+                <label id="sex" class="col-3">성별</label>
+                <input type="radio" name = "userGender" id ="man" value="m"> 남
+                <input type="radio" name = "userGender" id="girl"  value="f"> 여
+            </div>
+
+            <div class="row">
+            	<label for="userEmail" class="col-3">이메일</label>
+                <input type="email" name ="userEmail" class="col-7" id ="userEmail" placeholder="이메일을 입력하세요.">
+<!--                 <input type="button" class="btn btn-primary" name="email_send" id ="email_send" value="인증"> -->
+            </div>
+            
+<!--             <div class="row" style="display:none;">
+                <label for="emailCheck" class="col-3">인증번호</label>
+                <input type="email" name ="emailCheck" class="col-7" id ="emailCheck" placeholder="인증번호를 입력하세요.">
+            </div> -->
+            <input type="hidden" name="auth" th:value="ROLE_USER">
+
+            <div class="col-12 float-right">
+                <input type="submit" class="btn btn-info" value="가입" />
+                <input type="button" class="btn btn-danger" value="취소" onclick="location.href='/login'"/>
+            </div>
+    
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+</html>

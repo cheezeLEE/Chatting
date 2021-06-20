@@ -28,8 +28,15 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 	annotationProcessor 'org.projectlombok:lombok'
+
 	//DB로그(log4jdbc)를 사용하기 위함 : 로그를 보기좋게 찍어줌
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
+	//스프링 시큐리티를 사용하기 위해 추가
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	//뷰 단에서 현재 로그인된 사용자의 정보를 가져오기 위해 추가
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
