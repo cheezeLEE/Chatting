@@ -4,34 +4,30 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <title>로그인</title>
-
 <style>
-body {
-	width: 800px;
-	height: 600px;
-	margin: 10px;
-}
-
-table {
-	margin: 10px;
-}
-
-img {
-	margin-right: 10px;
-}
-
-input {
-	margin-bottom: 10px;
-}
-
-button {
-	margin-left: 10px;
-}
+	body {
+		width: 800px;
+		height: 600px;
+		margin: 10px;
+	}
+	
+	table {
+		margin: 10px;
+	}
+	
+	img {
+		margin-right: 10px;
+	}
+	
+	input {
+		margin-bottom: 10px;
+	}
+	
+	button {
+		margin-left: 10px;
+	}
 </style>
 </head>
 <body>
@@ -42,52 +38,39 @@ button {
 			</header>
 		</div>
 		<form th:action="@{/login}" method="POST">
-			<input type="hidden" th:name="${_csrf.parameterName}"
-				th:value="${_csrf.token}" />
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 			<div class="row">
-				<label for="username" class="col-2">아이디</label> <input type="text"
-					name="username" class="col-4" id="userId" placeholder="아이디를 입력하세요.">
+				<label for="username" class="col-2">아이디</label> 
+				<input type="text" name="username" class="col-4" id="userId" placeholder="아이디를 입력하세요.">
 			</div>
 			<div class="row">
-				<label for="userPw" class="col-2">비밀번호</label> <input
-					type="password" name="password" class="col-4" id="userPw"
-					placeholder="비밀번호를 입력하세요.">
+				<label for="userPw" class="col-2">비밀번호</label> 
+				<input type="password" name="password" class="col-4" id="userPw" placeholder="비밀번호를 입력하세요.">
 			</div>
 			<div class="row">
 				<div class="col-2"></div>
-				<a href="javascript:idPopup()">ID</a>
-				<pre> / </pre>
-				<a href="javascript:pwPopup()">PW 찾기</a>
-				<pre>  </pre>
-				<a href="/join">회원가입</a>
+				<a href="javascript:idPopup()">ID</a><pre> / </pre><a href="javascript:pwPopup()">PW 찾기</a><pre>  </pre><a href="/join">회원가입</a>
 				<button type="submit" class="btn btn-info">로그인</button>
 			</div>
 		</form>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 	<script>
 		function idPopup() {
-			var url = "searchId.html";
+			var url = "/searchIdForm";
 			var name = "searchId";
 			var option = "width = 500, height = 300, top = 100, left = 200, location = no"
 			window.open(url, name, option);
 		}
 
 		function pwPopup() {
-			var url = "searchPw.html";
+			var url = "/searchPw";
 			var name = "searchPw";
 			var option = "width = 500, height = 300, top = 100, left = 200, location = no"
 			window.open(url, name, option);
 		}
 	</script>
-
-
 </body>
 </html>

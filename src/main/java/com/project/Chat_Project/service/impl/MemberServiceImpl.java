@@ -31,10 +31,10 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	//회원정보 저장
-	public Long register(MemberVO memberVO) {
+	public Long register(MemberVO vo) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		memberVO.setUserPw(encoder.encode(memberVO.getUserPw()));
-		return memberMapper.registerMember(memberVO);
+		vo.setUserPw(encoder.encode(vo.getUserPw()));
+		return memberMapper.registerMember(vo);
 	}
 
 	//현재 인증된 사용자 정보 조회
@@ -49,4 +49,11 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return user_name;
 	}
+
+	@Override
+	public String searchId(MemberVO vo) {
+		return memberMapper.searchId(vo);
+	}
+
+	
 }

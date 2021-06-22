@@ -10,4 +10,9 @@
 		INSERT INTO member(userId, user_name, userPw, userGender, userEmail, auth)
 		VALUES(#{userId}, #{user_name}, #{userPw}, #{userGender}, #{userEmail}, #{auth})
 	</insert>
+
+	<select id="searchId" parameterType="com.project.Chat_Project.domain.MemberVO" resultType="string">
+		SELECT userId FROM member WHERE user_name = #{user_name} AND userEmail = #{userEmail}
+	</select>
+
 </mapper>

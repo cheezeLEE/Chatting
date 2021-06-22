@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 			//접근에 대한 인증설정
 			.authorizeRequests()
-				.antMatchers("/login","/join","/user").permitAll() //누구나 접근 가능한 부분
+				.antMatchers("/login","/join","/user","/searchIdForm","/searchId","/resultId").permitAll() //누구나 접근 가능한 부분
 				.antMatchers("/main").hasAnyRole("USER") //USER권한을 가진 사람만 접근 가능
 				.anyRequest().authenticated() //나머지 요청의 경우는 권한의 종류에 상관 없이 권한이 있어야 접근 가능
 			//로그인에 관한 설정

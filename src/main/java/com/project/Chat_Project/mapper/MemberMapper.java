@@ -13,4 +13,6 @@ public interface MemberMapper {
 	//회원등록 
 	public Long registerMember(MemberVO vo);
 	
+	//아이디 찾기
+	public String searchId(MemberVO vo);
 }
