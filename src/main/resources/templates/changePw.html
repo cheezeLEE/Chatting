@@ -25,12 +25,17 @@
 </head>
 <body>
    <h3>비밀번호 찾기</h3>
-   <p th:if="${count} != 1">
-     <script>
-       alert("일치하는 사용자가 없습니다.");
-       history.back();
-     </script>
-   </p> 
+   <div th:if="${pwchange} == success">
+     <script>window.close();</script>
+   </div>
+   <div th:unless="${pwchange} == success">
+	   <p th:if="${count} != 1">
+	     <script>
+	       alert("일치하는 사용자가 없습니다.");
+	       history.back();
+	     </script>
+	   </p>    
+   </div>
 	<input type="hidden" id="change" th:value="${pwChange}">
    <form id="changePwForm" th:action="@{/changePw}" method="POST">
        <input type="hidden" name="userId" th:value="${userId}"/>
