@@ -42,6 +42,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.registerMember(vo);
 	}
 
+//	@Override
+//	public int idCheck(String userId) {
+//		return memberMapper.idCheck(userId);
+//	}
+
+	
 	//현재 인증된 사용자 정보 조회
 	public String authMemberInfo() {
 		String user_name;
@@ -80,5 +86,4 @@ public class MemberServiceImpl implements MemberService{
 		memberMapper.changePw(vo);
 	}
 
-	
 }

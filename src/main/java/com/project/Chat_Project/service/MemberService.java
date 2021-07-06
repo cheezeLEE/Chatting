@@ -8,6 +8,9 @@ public interface MemberService extends UserDetailsService{
 	//회원가입
 	public Long register(MemberVO vo);
 	
+	//id 중복확인
+//	public int idCheck(String userId);
+	
 	//아이디 찾기
 	public String searchId(MemberVO vo);
 

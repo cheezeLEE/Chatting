@@ -20,8 +20,12 @@
             margin-top: 10px;
         }
 
-        .row input[type=button]{
+        .row input[type=button], button{
             margin-left: 5px;
+        }
+                
+        p{
+        	margin-bottom : 0px;
         }
     </style>
 </head>
@@ -30,10 +34,25 @@
         <div class="row">
             <h3>회원가입</h3>
         </div>
-        <form th:action="@{/user}" method="post">
+        <!-- 아이디 중복확인 버튼 클릭 시 보내는 데이터 -->
+<!--         <form id="idCheckForm" action="/idCheck" method="post">
+   			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        	<input type="hidden" name="userId" id="userIdCheck">
+        </form> -->
+        <form id="joinForm" th:action="@{/user}" method="post">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <div class="row">
                 <label for="userId" class="col-3">아이디</label>
                 <input type="text" name ="userId" id ="userId" placeholder="아이디를 입력하세요." class="col-7">
+                <button id="idCheck" class="btn btn-sm btn-info">중복확인</button>
+            </div>
+            <div class="row">
+            	<span class="col-3"></span>
+            	<p style="color:red;">이미 존재하는 아이디입니다.</p>
+            </div>
+            <div class="row">
+            	<span class="col-3"></span>
+            	<p style="color:blue;">사용할 수 있는 아이디입니다.</p>
             </div>
 
             <div class="row">
@@ -41,10 +60,10 @@
                 <input type="password" name ="userPw" id ="userPw" placeholder="비밀번호를 입력하세요." class="col-7">
             </div>
                 
-<!--             <div class="row">
+             <div class="row">
                 <label for="checkPw" class="col-3">비밀번호 확인</label>
                 <input type="password" name ="checkPw" id ="userPw" placeholder="비밀번호 확인." class="col-7">
-            </div> -->
+            </div>
 
             <div class="row">
                 <label for="user_name" class="col-3">이름</label>
@@ -60,17 +79,17 @@
             <div class="row">
             	<label for="userEmail" class="col-3">이메일</label>
                 <input type="email" name ="userEmail" class="col-7" id ="userEmail" placeholder="이메일을 입력하세요.">
-<!--                 <input type="button" class="btn btn-primary" name="email_send" id ="email_send" value="인증"> -->
+                <button class="btn btn-info btn-sm" name="email_send" id ="email_send">인증</button>
             </div>
             
-<!--             <div class="row" style="display:none;">
+             <div class="row" style="display:none;">
                 <label for="emailCheck" class="col-3">인증번호</label>
                 <input type="email" name ="emailCheck" class="col-7" id ="emailCheck" placeholder="인증번호를 입력하세요.">
-            </div> -->
+            </div> 
             <input type="hidden" name="auth" th:value="ROLE_USER">
 
             <div class="col-12 float-right">
-                <input type="submit" class="btn btn-info" value="가입" />
+                <input type="submit" class="btn btn-primary" value="가입" />
                 <input type="button" class="btn btn-danger" value="취소" onclick="location.href='/login'"/>
             </div>
     
@@ -79,5 +98,17 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<script>
+/* 	$(function(){
+		let id = $("userId").val();
+		
+		$("#idCheck").on("click", function(e){
+			e.preventDefault();
+			$("#userIdCheck").val(id);
+			console.log(id);
+			$("#idCheckForm").submit();
+		});
+	}); */
+</script>
 </body>
 </html>

@@ -13,6 +13,9 @@ public interface MemberMapper {
 	//회원등록 
 	public Long registerMember(MemberVO vo);
 	
+	//id 중복확인
+//	public int idCheck(String userId);
+	
 	//아이디 찾기
 	public String searchId(MemberVO vo);
 	

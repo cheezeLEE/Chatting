@@ -12,6 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.Chat_Project.domain.MemberVO;
 import com.project.Chat_Project.service.MemberService;
@@ -36,9 +39,12 @@ public class MemberController {
 		return "/login";
 	}
 	
-//	@GetMapping("/join")
-//	public String joinForm() {
-//		return "/join";
+	//id 중복확인
+//	@GetMapping("/idCheck")
+//	@ResponseBody
+//	public boolean idCheck(@RequestParam("userId") String userId) {
+//		logger.info(userId);
+//		return memberService.idCheck(userId) == 0;
 //	}
 	
 	//로그아웃
@@ -78,4 +84,5 @@ public class MemberController {
 		model.addAttribute("pwchange", "success");
 		return "/changePw";
 	}
+	
 }
