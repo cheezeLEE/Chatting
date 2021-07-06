@@ -30,8 +30,8 @@ public class MemberController {
 	//회원가입
 	@PostMapping("/user")
 	public String join(Model model, MemberVO vo) {
-		logger.info("회원가입 시도");
-		logger.info("아이디 : "+vo.getUserId());
+		logger.info("회원가입");
+//		logger.info("아이디 : "+vo.getUserId());
 		memberService.register(vo);
 		return "/login";
 	}
@@ -45,15 +45,37 @@ public class MemberController {
 	@GetMapping("/logout")
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
-		logger.info("로그아웃 시도");
+		logger.info("로그아웃");
 		return "redirect:/login";
 	}
 	
 	//아이디 찾기
 	@PostMapping("/searchId")
 	public String searchId(Model model, MemberVO vo) {
-		logger.info("아이디찾기 시도");
+		logger.info("아이디찾기");
 		model.addAttribute("searchId", memberService.searchId(vo));
 		return "/resultId";
+	}
+	
+	//비밀번호 찾기 : 사용자 조회
+	@PostMapping("/searchPw")
+	public String searchPw(Model model, MemberVO vo) {
+		logger.info("일치하는 사용자 찾기");
+		logger.info("controller : userId - "+vo.getUserId());
+		logger.info("controller : user_name - "+vo.getUser_name());
+		logger.info("controller : userEmail - "+vo.getUserEmail());
+		model.addAttribute("count", memberService.searchMember(vo));
+		model.addAttribute("userId", vo.getUserId());
+		return "/changePw";
+	}
+		
+	//비밀번호 찾기 : 비밀번호 재설정
+	@PostMapping("/changePw")
+	public String changePw(Model model, MemberVO vo) {
+		logger.info("비밀번호 재설정");
+		logger.info("userPw : "+vo.getUserPw()+",userId : "+vo.getUserId());
+		memberService.changePw(vo);
+		model.addAttribute("pwchange", "success");
+		return "/changePw";
 	}
 }

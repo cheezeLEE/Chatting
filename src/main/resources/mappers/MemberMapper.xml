@@ -15,4 +15,12 @@
 		SELECT userId FROM member WHERE user_name = #{user_name} AND userEmail = #{userEmail}
 	</select>
 
+	<select id="searchMember" parameterType="com.project.Chat_Project.domain.MemberVO" resultType="int">
+		SELECT COUNT(*) FROM member WHERE userId = #{userId} AND user_name = #{user_name} AND userEmail = #{userEmail}
+	</select>
+	
+	<update id="changePw" parameterType="com.project.Chat_Project.domain.MemberVO">
+		UPDATE member SET userPw = #{userPw} WHERE userId = #{userId}
+	</update>
+
 </mapper>

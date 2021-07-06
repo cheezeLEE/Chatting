@@ -15,4 +15,11 @@ public interface MemberMapper {
 	
 	//아이디 찾기
 	public String searchId(MemberVO vo);
+	
+	//비밀번호 찾기 : 입력된 정보를 가진 사용자를 조회 -> 비밀번호 재설정 (입력받기 -> 암호화 -> 저장)
+	//비밀번호찾기 : 사용자 조회
+	public int searchMember(MemberVO vo);
+	
+	//비밀번호찾기 : 비밀번호 재설정
+	public void changePw(MemberVO vo);
 }

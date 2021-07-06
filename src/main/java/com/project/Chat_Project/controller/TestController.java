@@ -18,15 +18,15 @@ public class TestController {
 	@Autowired
 	private TestService testService;
 	
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String test(Model model) {
-		model.addAttribute("test", testService.getTime());
-		log.trace("trace");
-		log.error("error");
-		log.info("info");
-		log.debug("debug");
-		log.warn("warn");
-		testService.selectMember();
-		return "test";
-	}
+//	@RequestMapping(value="/", method=RequestMethod.GET)
+//	public String test(Model model) {
+//		model.addAttribute("test", testService.getTime());
+//		log.trace("trace");
+//		log.error("error");
+//		log.info("info");
+//		log.debug("debug");
+//		log.warn("warn");
+//		testService.selectMember();
+//		return "test";
+//	}
 }
